@@ -1,12 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import {Provider} from 'react-redux';
+import {store} from './store/store.js';
+import {TrendingVideos} from './components/TrendingVideos.js'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+class App extends React.Component {
+    render(){
+        return(
+            <Provider store = {store}>
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-md-2">
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+                        </div>
+                        <div className="col-md-10">
+                                <TrendingVideos/>
+                        </div>
+                    </div>
+                </div>
+           </Provider>
+        );
+    }style
+}
+
+ReactDOM.render(<App/>,document.getElementById("root"));
