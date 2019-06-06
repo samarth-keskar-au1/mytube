@@ -2,21 +2,16 @@ import React from 'react';
 import {store,stateMapper} from '../store/store.js';
 import {connect} from 'react-redux';
 
-class TrendingVideosComponent extends React.Component {
-     componentDidMount() {
-        store.dispatch({
-            type:"FETCH_VIDEOS"
-        }) 
-    }
+class VideosComponent extends React.Component {
 
     render() {
         return(
             <div className="row">
                 {this.props.videos.map( v => {
                     return (
-                    <div key = {v.id} className="col-sm-4"> 
+                    <div key = {v.etag} className="col-sm-4"> 
                         <img alt={v.snippet.title} src= {v.snippet.thumbnails.medium.url} className="img-fluid"/>
-                        <a href="http://"> {v.snippet.title}</a>   
+                        <a href="http://"> {v.snippet.title}</a> <span>by</span> <a href=""> {v.snippet.channelTitle}</a> 
                     </div>
                     );
                 })}
@@ -28,6 +23,6 @@ class TrendingVideosComponent extends React.Component {
 }
 
 
-let TrendingVideos = connect(stateMapper)(TrendingVideosComponent);
+let Videos = connect(stateMapper)(VideosComponent);
 
-export {TrendingVideos};
+export {Videos};

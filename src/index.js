@@ -2,25 +2,35 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {store} from './store/store.js';
-import {TrendingVideos} from './components/TrendingVideos.js'
+import {Menu} from './components/Menu.js';
+import {Trending} from './components/Trending.js';
+import {Search} from './components/Search.js'
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 class App extends React.Component {
     render(){
         return(
             <Provider store = {store}>
+                <Router>
                 <div className="container-fluid">
                     <div className="row">
+                    
                         <div className="col-md-2">
-
+                            <Menu/>
                         </div>
+                       
                         <div className="col-md-10">
-                                <TrendingVideos/>
+
+                            <Route path = "/" exact = {true} component= {Trending} />
+                            <Route path = "/search"component= {Search} />
+                            
                         </div>
                     </div>
                 </div>
+                </Router>
            </Provider>
         );
-    }style
+    }
 }
 
 ReactDOM.render(<App/>,document.getElementById("root"));
