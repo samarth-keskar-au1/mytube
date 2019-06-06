@@ -5,7 +5,7 @@ import {store} from './store/store.js';
 import {Menu} from './components/Menu.js';
 import {Trending} from './components/Trending.js';
 import {Search} from './components/Search.js'
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 class App extends React.Component {
     render(){

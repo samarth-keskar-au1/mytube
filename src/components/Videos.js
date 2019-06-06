@@ -11,7 +11,10 @@ class VideosComponent extends React.Component {
                     return (
                     <div key = {v.etag} className="col-sm-4"> 
                         <img alt={v.snippet.title} src= {v.snippet.thumbnails.medium.url} className="img-fluid"/>
-                        <a href="http://"> {v.snippet.title}</a> <span>by</span> <a href=""> {v.snippet.channelTitle}</a> 
+                        <p></p>
+                        <a href="http://"> {v.snippet.title}</a> <span>by</span> <a href=""> 
+                        {v.snippet.channelTitle}</a> 
+                        <p></p>
                     </div>
                     );
                 })}
