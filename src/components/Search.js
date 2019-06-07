@@ -8,10 +8,9 @@ class SearchVideosComponent extends React.Component {
     state= {
         query:""
     }
-    componentDidMount() {
-        store.dispatch({
-            type:"CLEAR_VIDEOS"
-        }) 
+
+    componentWillUnmount() {
+         store.dispatch({type:"CLEAR_VIDEOS"}) 
     }
 
     handleInput = e => {

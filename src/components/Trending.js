@@ -5,10 +5,19 @@ import {Videos} from './Videos.js';
 
 
 class TrendingVideosComponent extends React.Component {
+   
+
+
     componentDidMount() {
-        store.dispatch({type:"CLEAR_VIDEOS"}) 
         store.dispatch({type:"FETCH_VIDEOS",videoType:"trending"}) 
     }
+
+    componentWillUnmount() {
+        store.dispatch({type:"CLEAR_VIDEOS"}) 
+    }
+   
+
+    
     render() {
         return( 
             <React.Fragment>
