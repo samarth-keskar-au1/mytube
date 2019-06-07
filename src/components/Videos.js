@@ -1,6 +1,7 @@
 import React from 'react';
-import {store,stateMapper} from '../store/store.js';
+import {stateMapper} from '../store/store.js';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 class VideosComponent extends React.Component {
 
@@ -18,12 +19,18 @@ class VideosComponent extends React.Component {
          } else { return(
             <div className="row">
                 {this.props.videos.map( v => {
+                    let videoId = v.id;
+
+                    if(typeof videoId != "string") {
+                        videoId = v.id.videoId;
+                    }
+
                     return (
                     <div key = {v.etag} className="col-sm-4"> 
                         <img alt={v.snippet.title} src= {v.snippet.thumbnails.medium.url} className="img-fluid"/>
                         <p></p>
-                        <a href="http://"> {v.snippet.title}</a> <span>by</span> <a href=""> 
-                        {v.snippet.channelTitle}</a> 
+                        <Link to={`/video/${videoId}`}>{v.snippet.title}</Link> <span>by</span> <em> 
+                        {v.snippet.channelTitle}</em> 
                         <p></p>
                     </div>
                     );

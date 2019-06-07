@@ -4,7 +4,8 @@ import {Provider} from 'react-redux';
 import {store} from './store/store.js';
 import {Menu} from './components/Menu.js';
 import {Trending} from './components/Trending.js';
-import {Search} from './components/Search.js'
+import {Search} from './components/Search.js';
+import {SingleVideo} from './components/SingleVideo.js';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 class App extends React.Component {
@@ -23,6 +24,7 @@ class App extends React.Component {
 
                             <Route path = "/" exact = {true} component= {Trending} />
                             <Route path = "/search"component= {Search} />
+                            <Route path = "/video/:videoId" component= {SingleVideo} />
                             
                         </div>
                     </div>

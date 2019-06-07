@@ -16,7 +16,16 @@ function fetchVideos(store,action) {
     }
 }
 
-export {fetchVideos};
+
+function fetchSingleVideo(store,action) {
+        fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${action.video}&key=${config.api_key}`)
+        .then(response => response.json())
+        .then(data => store.dispatch({ type: "SINGLE_VIDEO_LOADED",video: data.items[0]}))
+        .catch(err => console.log(err) );
+
+}
+
+export {fetchVideos,fetchSingleVideo};
 
 
 
