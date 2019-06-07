@@ -5,7 +5,17 @@ import {connect} from 'react-redux';
 class VideosComponent extends React.Component {
 
     render() {
-        return(
+        if (this.props.isVideosLoading) {
+            return (
+                <React.Fragment>
+                    <div className="text-center">
+                        <div className="spinner-border" role="status">
+                            <span className="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                </React.Fragment>
+            );
+         } else { return(
             <div className="row">
                 {this.props.videos.map( v => {
                     return (
@@ -19,9 +29,9 @@ class VideosComponent extends React.Component {
                     );
                 })}
             </div>
-        );
+            );
+        }
     }
-
 
 }
 

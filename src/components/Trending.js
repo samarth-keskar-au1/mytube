@@ -19,7 +19,7 @@ class TrendingVideosComponent extends React.Component {
 
     
     render() {
-        return( 
+     return( 
             <React.Fragment>
             <h1>Trending Videos</h1>
             <hr/>
