@@ -32,7 +32,14 @@ function fetchSingleVideo(store,action) {
 
 }
 
-export {fetchVideos,fetchSingleVideo,fetchRelatedVideos};
+function fetchVideoComments(store,action){
+    fetch(`https://www.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&maxResults=5&videoId=${action.videoId}&key=${config.api_key}`)
+    .then(response => response.json())
+    .then(data => store.dispatch({ type:"VIDEO_COMMENTS_LOADED",comments:data.items}))
+    .catch(err => console.log(err) );
+}
+
+export {fetchVideos,fetchSingleVideo,fetchRelatedVideos,fetchVideoComments};
 
 
 

@@ -3,12 +3,14 @@ import videosReducer from './reducers/videosReducer.js'
 import isVideosLoadingReducer from './reducers/isVideosLoading.js';
 import singleVideoReducer from './reducers/SingleVideoReducer.js';
 import relatedVideosReducer from './reducers/relatedVideosReducer.js';
+import currentVideoCommentsReducer from './reducers/currentVideoCommentsReducer.js';
 
 let reducer = combineReducers({
     videos:videosReducer,
     isVideosLoading:isVideosLoadingReducer,
     video:singleVideoReducer,
-    relatedVideos:relatedVideosReducer
+    relatedVideos:relatedVideosReducer,
+    currentVideoComments:currentVideoCommentsReducer
 });
 
 let store = createStore(reducer);

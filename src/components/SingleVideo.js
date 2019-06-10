@@ -1,6 +1,7 @@
 import React from "react";
 import { stateMapper, store } from "../store/store.js";
 import { connect } from "react-redux";
+import {Comments} from "./Comments.js"
 import {RelatedVideos} from './RelatedVideos.js'
 
 class SingleVideoComponent extends React.Component {
@@ -14,6 +15,12 @@ class SingleVideoComponent extends React.Component {
       video: this.props.match.params.videoId
     });
   } 
+
+  componentWillUnmount() {
+    this.props.dispatch({
+        type: 'CLEAR_VIDEO_DATA'
+    })
+}
 
   handleShowMore = () => {
     this.setState({
@@ -92,9 +99,13 @@ class SingleVideoComponent extends React.Component {
                 <h4>Description:</h4>
                 {this.renderDescription()}
               </p>
+            <hr/>
+            <h4>Comments:</h4>
+            <p></p>
+            <Comments videoId={this.props.match.params.videoId}/>
             </div>
             <div className="col-md-4">
-              <RelatedVideos/>
+              
             </div>
           </div>
         </React.Fragment>
