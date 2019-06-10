@@ -10,16 +10,10 @@ class SingleVideoComponent extends React.Component {
 
   componentDidMount() {
     store.dispatch({
-      type: "CLEAR_SINGLE_VIDEO_DATA"
-    })
-  } 
-
-  componentWillReceiveProps()  {
-    store.dispatch({
       type: "FETCH_SINGLE_VIDEO",
       video: this.props.match.params.videoId
     });
-  }
+  } 
 
   handleShowMore = () => {
     this.setState({
@@ -34,6 +28,7 @@ class SingleVideoComponent extends React.Component {
   }
 
   renderDescription = () => {
+    
       if (this.state.showMoreClicked === false) {
         return (
         <React.Fragment>
@@ -82,6 +77,18 @@ class SingleVideoComponent extends React.Component {
               <hr />
               <p />
               <p>
+              <div className="row">
+              <div className="col-md-4">
+                <p className="lead">{this.props.video.statistics.viewCount} Views </p>
+              </div>
+              <div className="col-md-4">
+                <p className="lead">{this.props.video.statistics.likeCount} Likes </p>
+              </div>
+              <div className="col-md-4">
+                <p className="lead">{this.props.video.statistics.dislikeCount} Dislikes </p>
+              </div>
+            </div>
+            <hr/>
                 <h4>Description:</h4>
                 {this.renderDescription()}
               </p>

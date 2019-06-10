@@ -29,7 +29,7 @@ class RelatedVideosComponent extends React.Component {
                         }
 
                 return(
-                    <li className="media">
+                    <li key={v.etag} className="media">
                         <div className="col-md-5">
                         <img src={v.snippet.thumbnails.default.url} className="mr-3" alt="..."/>
                         <p></p>
