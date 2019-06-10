@@ -4,18 +4,52 @@ import { connect } from "react-redux";
 import {RelatedVideos} from './RelatedVideos.js'
 
 class SingleVideoComponent extends React.Component {
-    state ={};
+    state ={
+      showMoreClicked:false
+    };
 
   componentDidMount() {
     store.dispatch({
       type: "CLEAR_SINGLE_VIDEO_DATA"
     })
+  } 
+
+  componentWillReceiveProps()  {
     store.dispatch({
       type: "FETCH_SINGLE_VIDEO",
       video: this.props.match.params.videoId
     });
-  } 
+  }
 
+  handleShowMore = () => {
+    this.setState({
+      showMoreClicked:true
+    })
+  }
+
+  handleShowLess = () => {
+    this.setState({
+      showMoreClicked:false
+    })
+  }
+
+  renderDescription = () => {
+      if (this.state.showMoreClicked === false) {
+        return (
+        <React.Fragment>
+          {this.props.video.snippet.short}
+          <button className="btn btn-info m-1" onClick={this.handleShowMore}>See More</button>
+        </React.Fragment>
+        )
+      } else if (this.state.showMoreClicked === true) {
+        return (
+        <React.Fragment>
+          {this.props.video.snippet.description}
+          <button className="btn btn-info m-1" onClick={this.handleShowLess}>Show Less</button>
+        </React.Fragment>
+        )
+      }
+  }
 
   renderVideo() {
     return <div className="embed-responsive embed-responsive-16by9">
@@ -49,7 +83,7 @@ class SingleVideoComponent extends React.Component {
               <p />
               <p>
                 <h4>Description:</h4>
-                {this.props.video.snippet.short}
+                {this.renderDescription()}
               </p>
             </div>
             <div className="col-md-4">

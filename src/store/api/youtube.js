@@ -18,7 +18,7 @@ function fetchVideos(store,action) {
 }
 
 function fetchRelatedVideos(store,action) {
-        fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${action.id}&type=video&key=${config.api_key}`)
+        fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${action.id}&type=video&key=${config.api_key}&maxResults=5`)
         .then(response => response.json())
         .then(data => store.dispatch({ type: "RELATED_VIDEOS_LOADED",relatedVideos: data.items}))
         .catch(err => console.log(err) );
