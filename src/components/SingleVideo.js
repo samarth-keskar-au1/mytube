@@ -1,15 +1,21 @@
 import React from "react";
 import { stateMapper, store } from "../store/store.js";
 import { connect } from "react-redux";
+import {RelatedVideos} from './RelatedVideos.js'
 
 class SingleVideoComponent extends React.Component {
     state ={};
+
   componentDidMount() {
+    store.dispatch({
+      type: "CLEAR_SINGLE_VIDEO_DATA"
+    })
     store.dispatch({
       type: "FETCH_SINGLE_VIDEO",
       video: this.props.match.params.videoId
     });
-  }
+  } 
+
 
   renderVideo() {
     return <div className="embed-responsive embed-responsive-16by9">
@@ -43,8 +49,11 @@ class SingleVideoComponent extends React.Component {
               <p />
               <p>
                 <h4>Description:</h4>
-                {this.props.video.snippet.description}
+                {this.props.video.snippet.short}
               </p>
+            </div>
+            <div className="col-md-4">
+              <RelatedVideos/>
             </div>
           </div>
         </React.Fragment>

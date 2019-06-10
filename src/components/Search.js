@@ -35,7 +35,7 @@ class SearchVideosComponent extends React.Component {
                 <div className="col">
                 <input onChange={this.handleInput} type="text" className="form-control form-control-md"/>
                 </div>
-                <button onClick={this.handleSearch} className="btn btn-info">Search</button>
+                <button onClick={this.handleSearch} className="btn btn-info btn-md"><i className="fas fa-search"></i></button>
             </div>
             <Videos/>
             </React.Fragment>

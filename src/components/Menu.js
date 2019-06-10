@@ -8,7 +8,7 @@ class MenuComponent extends React.Component {
     render() {
         return(
             <div>
-            <h4 className="m-1">MyTube</h4>
+              <h4 className="m-1">MyTube</h4>
             <hr/>
                 <ul className="list-group">
                     <li className="list-group-item active">Menu</li>
