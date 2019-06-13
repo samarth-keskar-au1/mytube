@@ -5,6 +5,12 @@ import {stateMapper} from '../store/store.js'
 
 
 class MenuComponent extends React.Component {
+
+    componentDidMount() {
+        this.props.dispatch({
+            type:"FETCH_PLAYLISTS"
+        })
+    }
     render() {
         return(
             <div>
@@ -14,6 +20,11 @@ class MenuComponent extends React.Component {
                     <li className="list-group-item active">Menu</li>
                     <li className="list-group-item"> <Link to="/app">Trending</Link> </li>
                     <li className="list-group-item"> <Link to="/app/search">Search</Link> </li>
+                    <li className="list-group-item active"> My Playlists </li>
+                    {this.props.playlists.map(p => (
+                    <li className="list-group-item"><Link to={`/app/playlists/${p.id}`}>{p.snippet.title}</Link></li>
+                    ))}
+                    <li className="list-group-item active"> My Profile </li>
                     <li className="list-group-item"><Link to="/app/profile">Profile</Link></li>
                     <li className="list-group-item"><Link to="/app/logout">Logout</Link> </li>
                 </ul>
