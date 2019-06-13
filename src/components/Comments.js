@@ -5,7 +5,6 @@ import { stateMapper,store } from '../store/store.js'
 class CommentsComponent extends React.Component {
 
     componentDidMount() {
-
         store.dispatch({
             type: "FETCH_VIDEO_COMMENTS",
             videoId: this.props.videoId
@@ -18,7 +17,7 @@ class CommentsComponent extends React.Component {
                 return (
 
                     <p key={c.id}>
-                        <img title="title" src={c.snippet.topLevelComment.snippet.authorProfileImageUrl}/>
+                        <img title="title" alt={c.snippet.topLevelComment.snippet.authorDisplayName} src={c.snippet.topLevelComment.snippet.authorProfileImageUrl}/>
                         <strong>{c.snippet.topLevelComment.snippet.authorDisplayName}</strong><br/>
                         {c.snippet.topLevelComment.snippet.textOriginal}
                         <hr />
