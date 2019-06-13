@@ -7,6 +7,7 @@ import {Search} from './Search.js';
 import {SingleVideo} from './SingleVideo.js';
 import Profile from './Profile.js';
 import Logout from './Logout.js';
+import CreatePlaylist from './CreatePlaylist.js'
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 class App extends React.Component {
@@ -25,8 +26,10 @@ class App extends React.Component {
                             <Route path = "/app" exact = {true} component= {Trending} />
                             <Route path = "/app/search"component= {Search} />
                             <Route path = "/app/video/:videoId" component= {SingleVideo} />
+                            <Route path="/app/playlist/create" component={CreatePlaylist} />
                             <Route path="/app/profile" component={Profile} />
                             <Route path="/app/logout" component={Logout} />
+                        
                             
                         </div>
                     </div>

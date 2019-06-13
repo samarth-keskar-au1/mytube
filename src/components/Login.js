@@ -3,7 +3,7 @@ import { GoogleLogin } from "react-google-login";
 
 class Login extends React.Component {
 
-  googleCallback(response) {
+  googleCallback = response => {
     if (!response || !response.accessToken) {
         return alert("Sorry,google sign has failed");
     }
