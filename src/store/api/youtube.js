@@ -56,7 +56,28 @@ function fetchVideoComments(store,action){
     .catch(err => console.log(err) );
 }
 
-export {fetchVideos,fetchSingleVideo,fetchRelatedVideos,fetchVideoComments,fetchPlaylists};
+function createPlaylist(store,action) {
+    console.log(action.data.name,action.data.description)
+    let data = {
+        "snippet": {
+            "title": action.data.name,
+            "description": action.data.description
+        }
+    }
+    fetch(`https://www.googleapis.com/youtube/v3/playlists?part=snippet`, {
+    "method": "POST",
+    "headers": {
+      "content-type": "application/json",
+      "authorization": `Bearer ${getUserToken()}`
+    },
+    "body":JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => store.dispatch({ type: "PLAYLISTS_CREATED", playlist: data}))
+    .catch(err => console.log(err) );
+}
+
+export {fetchVideos,createPlaylist,fetchSingleVideo,fetchRelatedVideos,fetchVideoComments,fetchPlaylists};
 
 
 

@@ -5,6 +5,7 @@ import singleVideoReducer from './reducers/SingleVideoReducer.js';
 import relatedVideosReducer from './reducers/relatedVideosReducer.js';
 import currentVideoCommentsReducer from './reducers/currentVideoCommentsReducer.js';
 import userPlaylistsReducer from './reducers/getUserPlaylists.js';
+import createNewPlaylistReducer from './reducers/createNewPlaylistReducer.js'
 
 let reducer = combineReducers({
     videos:videosReducer,
@@ -12,7 +13,8 @@ let reducer = combineReducers({
     video:singleVideoReducer,
     relatedVideos:relatedVideosReducer,
     currentVideoComments:currentVideoCommentsReducer,
-    playlists:userPlaylistsReducer
+    playlists:userPlaylistsReducer,
+    newPlaylist:createNewPlaylistReducer
 });
 
 let store = createStore(reducer);

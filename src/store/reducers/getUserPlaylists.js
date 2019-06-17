@@ -6,6 +6,10 @@ export default function userPlaylistsReducer(playlists=[],action) {
         fetchPlaylists(store,action);
     }
 
+    if(action.type === "PLAYLISTS_CREATED") {
+        fetchPlaylists(store,action);
+    }
+
     if(action.type === "PLAYLISTS_LOADED") {
         playlists = action.playlists;
     }

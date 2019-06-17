@@ -1,11 +1,15 @@
 import React from "react";
+import {connect} from "react-redux";
+import {Redirect} from "react-router-dom";
+import {store,stateMapper} from '../store/store.js';
 
-export default class CreatePlaylist extends React.Component {
+
+class CreatePlaylistComponent extends React.Component {
     state = {
         formState: {
             isFormValid: true,
             isNameValid: true,
-            isTextValid: true
+            isDescriptionValid: true
         }
     };
 
@@ -19,7 +23,7 @@ export default class CreatePlaylist extends React.Component {
         let initialState = {
             isFormValid: true,
             isNameValid: true,
-            isTextValid: true
+            isDescriptionValid: true
         };
 
         if (!this.state.name) {
@@ -29,20 +33,37 @@ export default class CreatePlaylist extends React.Component {
 
         if (!this.state.description) {
             initialState.isFormValid = false;
-            initialState.isTextValid = false;
+            initialState.isDescriptionValid = false;
         }
 
         this.setState({
             formState: initialState
         })
 
+        return initialState.isFormValid;
     }
 
-    handleSubmit = e => {
-        this.validateInput();
+    handleSubmit = e => {  
+        if(!this.validateInput()) {return;}
+
+        store.dispatch({
+            type:"CREATE-PLAYLIST",
+            data:this.state
+        })
+
+    }
+
+    componentWillUnmount(){
+        store.dispatch({
+            type:"CLEAR_CREATED_PLAYLIST",
+            data:this.state
+        })
     }
 
     render() {
+        if(this.props.newPlaylist.id) {
+            return <Redirect to={`/app/playlists/${this.props.newPlaylist.id}`}></Redirect>
+        }
         return (
             <React.Fragment>
                 <h1>Create A New Playlist</h1>
@@ -51,8 +72,12 @@ export default class CreatePlaylist extends React.Component {
                     <div className="form-group">
                         {!this.state.formState.isFormValid &&
                             <div>
-                                <h3><span className="badge badge-pill badge-danger">Please Fill All The Input Boxes.</span>
-                                </h3></div>}
+                                <h3>
+                                    <span className="badge badge-pill badge-danger">
+                                        Please Fill All The Input Boxes.
+                                    </span>
+                                </h3>
+                            </div>}
                         <label>Name:</label>
                         <input onChange={this.handleChange} name="name" type="text" className={`form-control ${!this.state.formState.isNameValid && "is-invalid"}`} />
                     </div>
@@ -66,7 +91,7 @@ export default class CreatePlaylist extends React.Component {
                     </div>
                     <div className="form-group">
                         <label>Description</label>
-                        <textarea onChange={this.handleChange} name="description" className={`form-control ${!this.state.formState.isTextValid && "is-invalid"}`} rows="3"></textarea>
+                        <textarea onChange={this.handleChange} name="description" className={`form-control ${!this.state.formState.isDescriptionValid && "is-invalid"}`} rows="3"></textarea>
                     </div>
                     <button onClick={this.handleSubmit} type="button" className="btn btn-info">Create</button>
                 </form>
@@ -74,3 +99,7 @@ export default class CreatePlaylist extends React.Component {
         )
     }
 }
+
+let CreatePlaylist = connect(stateMapper)(CreatePlaylistComponent);
+
+export default CreatePlaylist;
